@@ -1,0 +1,8 @@
+fastapi==0.78.0
+kafka-python==2.0.2
+SQLAlchemy==1.4.41
+mysql-connector-python==8.0.28
+prometheus-fastapi-instrumentator==5.9.0
+python-dotenv==1.0.1
+uvicorn==0.32.0
+
