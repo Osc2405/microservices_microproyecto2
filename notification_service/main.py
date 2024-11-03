@@ -20,12 +20,8 @@ def consume_user_events():
         KAFKA_TOPIC,
         bootstrap_servers=[KAFKA_BROKER_URL],
         value_deserializer=lambda x: json.loads(x.decode("utf-8")),
-        auto_offset_reset="earliest",
-        enable_auto_commit=True,
-        group_id="user_service_group",
     )
 
-    print("Waiting for user events. To exit press CTRL+C")
     for message in consumer:
         event = message.value
         if event.get("event_type") == "UserRegistered":
