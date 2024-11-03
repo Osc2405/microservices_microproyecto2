@@ -2,7 +2,7 @@
 
 This project consists of a microservices architecture with a user service, a notification service, and monitoring setup using Traefik and Prometheus.
 
-## Arquitecute
+## Architecture
 
 The architecture of this microservices project is shown in the diagram below. This diagram illustrates how each service interacts within the ecosystem, including the API gateway (Traefik) and the monitoring service (Prometheus).
 
