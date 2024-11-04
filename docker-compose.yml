@@ -64,7 +64,7 @@ services:
       - "${PROMETHEUS_PORT}:${PROMETHEUS_PORT}"
 
   kafka:
-    image: confluentinc/cp-kafka:7.4.1 # apache/kafka
+    image: confluentinc/cp-kafka:7.4.1 # confluentinc/cp-kafka
     container_name: kafka
     hostname: kafka
     environment:
