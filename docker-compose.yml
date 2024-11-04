@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   api-gateway:
-    image: traefik:v2.4
+    image: traefik:v2.4 # traefik
     hostname: api-gateway
     container_name: api-gateway
     depends_on:
@@ -42,7 +42,7 @@ services:
       - user-service
 
   mysql:
-    image: arm64v8/mysql:8.0 #mysql:8.0
+    image: arm64v8/mysql:8.0 # mysql:8.0
     hostname: mysql
     container_name: mysql
     environment:
@@ -64,7 +64,7 @@ services:
       - "${PROMETHEUS_PORT}:${PROMETHEUS_PORT}"
 
   kafka:
-    image: confluentinc/cp-kafka:7.4.1
+    image: confluentinc/cp-kafka:7.4.1 # apache/kafka
     container_name: kafka
     hostname: kafka
     environment:
@@ -77,7 +77,7 @@ services:
       - zookeeper
 
   zookeeper:
-    image: confluentinc/cp-zookeeper:7.4.1
+    image: confluentinc/cp-zookeeper:7.4.1 # zookeeper
     container_name: zookeeper
     hostname: zookeeper
     environment:
