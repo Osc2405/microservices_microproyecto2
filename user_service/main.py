@@ -20,7 +20,7 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 # Kafka producer configuration
-KAFKA_BROKER_URL = os.getenv("KAFKA_BROKER_URL")
+KAFKA_BROKER_URL = os.getenv("KAFKA_BROKER_URL", "kafka:9092")
 producer = KafkaProducer(
     bootstrap_servers=KAFKA_BROKER_URL,
     value_serializer=lambda v: json.dumps(v).encode("utf-8"),

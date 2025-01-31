@@ -1,6 +1,18 @@
 version: "3.8"
 
 services:
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin # Cambia estas credenciales
+    volumes:
+      - grafana_data:/var/lib/grafana
+    ports:
+      - "3000:3000" # Grafana UI
+    restart: always
+
   api-gateway:
     image: traefik:v2.4 # traefik
     hostname: api-gateway
@@ -42,7 +54,7 @@ services:
       - user-service
 
   mysql:
-    image: arm64v8/mysql:8.0 # mysql:8.0
+    image: mysql:8.0
     hostname: mysql
     container_name: mysql
     environment:
@@ -52,6 +64,17 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     volumes:
       - mysql_data:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8081:80"   
+    depends_on:
+      - mysql
 
   prometheus:
     image: prom/prometheus
@@ -62,14 +85,16 @@ services:
       - prometheus_data:/prometheus
     ports:
       - "${PROMETHEUS_PORT}:${PROMETHEUS_PORT}"
+      
 
   kafka:
-    image: confluentinc/cp-kafka:7.4.1 # confluentinc/cp-kafka
+    image: wurstmeister/kafka:latest
     container_name: kafka
     hostname: kafka
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      KAFKA_LISTENERS: PLAINTEXT://kafka:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
@@ -87,3 +112,4 @@ services:
 volumes:
   mysql_data:
   prometheus_data:
+  grafana_data:

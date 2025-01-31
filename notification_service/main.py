@@ -10,7 +10,7 @@ load_dotenv()
 EVENTS_CONSUMED = Counter("events_consumed", "Total number of events consumed")
 
 # Kafka broker URL
-KAFKA_BROKER_URL = os.getenv("KAFKA_BROKER_URL")
+KAFKA_BROKER_URL = os.getenv("KAFKA_BROKER_URL","kafka:9092")
 KAFKA_TOPIC = os.getenv("KAFKA_TOPIC")
 
 

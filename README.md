@@ -1,6 +1,6 @@
 # Microservices Project
 
-This project consists of a microservices architecture with a user service, a notification service, and monitoring setup using Traefik and Prometheus.
+This project is a modification of the repository [CloudComputingUAO/microservices](https://github.com/CloudComputingUAO/microservices). It consists of a microservices architecture with a user service, a notification service, and monitoring setup using Traefik and Prometheus.
 
 ## Architecture
 
