@@ -1,0 +1,23 @@
+apiVersion: v1
+data:
+  traefik.yml: |
+    entryPoints:
+      web:
+        address: ":80"
+      websecure:
+        address: ":443"
+
+    providers:
+      docker:
+        exposedByDefault: false
+
+    api:
+      dashboard: true
+      insecure: true
+kind: ConfigMap
+metadata:
+  annotations:
+    use-subpath: "true"
+  labels:
+    io.kompose.service: api-gateway
+  name: api-gateway-cm1

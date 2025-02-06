@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-service
+  labels:
+    io.kompose.service: prometheus
+spec:
+  selector:
+    io.kompose.service: prometheus
+  type: NodePort  # Permite que Minikube exponga el servicio con un puerto accesible desde el host
+  ports:
+    - protocol: TCP
+      port: 9090  # Puerto interno del servicio
+      targetPort: 9090  # Puerto del contenedor
+      nodePort: 30090  # Puerto accesible desde el host (debe estar en el rango 30000-32767)
